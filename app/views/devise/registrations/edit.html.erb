@@ -7,8 +7,9 @@
       <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= f.label :username %> 请填入RTX的用户名字, 例如：wenyang
-      <%= f.text_field :username, :autofocus => true, class: 'form-control' %>
+      <%= f.label :department  %>
+      <%= f.select :department, User.options_for_departments%>
+   
     </div>
     <div class="form-group">
       <%= f.label :email %>

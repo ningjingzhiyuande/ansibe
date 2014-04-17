@@ -1,5 +1,8 @@
 class Attendance < ActiveRecord::Base
- 
+  belongs_to :applicant, class_name: "User",:foreign_key=>"applicant_id"
+  belongs_to :reviewer1, class_name: "User"  ,:foreign_key=>"reviewer2_id"
+ # belongs_to :reviewer2, class_name: "User"
+  include SimpleEnum
 
   include Workflow
   workflow do
@@ -17,6 +20,8 @@ class Attendance < ActiveRecord::Base
     state :rejected
   end 
 
+  has_enum :leave_kinds ,:enums => [[:nianjia, 0, "年假"],[:hunjia, 1, "婚假"],[:shijia, 2, "事假"],[:bingjia, 3, "病假"],[:sangjia, 4, "丧假"],[:qita, 5, "其他"]], \
+      :column => :leave_kind, :default => :shijia
 
   def submit
   end

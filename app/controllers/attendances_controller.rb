@@ -4,14 +4,14 @@ class AttendancesController < ApplicationController
 
   def index
     @attendances = Attendance.all
-    #@applicants = Applicant.all
+   # @applicants = User.all
    # @reviewer1s = Reviewer1.all
   end
 
 
   def show
-    @applicant = Applicant.find(@attendance.applicant_id)
-    @reviewer1 = Reviewer1.find_by_username(@attendance.reviewer1_username)
+    @applicant = @attendance.applicant#User.find(@attendance.applicant_id)
+    @reviewer1 = @attendance.reviewer1 #User.where(@attendance.reviewer1_username)
   end
 
   def new
@@ -26,7 +26,7 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.save
-        Notifier.new_attendance(current_user).deliver
+       # Notifier.new_attendance(current_user).deliver
         @attendance.submit!
 
         format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }
