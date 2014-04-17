@@ -1,0 +1,84 @@
+<h1>Listing net_cards</h1>
+
+<%= link_to 'New NetCard', new_net_card_path, class: "button [secondary alert success"%>
+
+<h2>您发出的3G卡申请</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Applicant</th>
+      <th>Review1 username</th>
+  <!--   <th>Reviewer2 username</th> -->  
+    <th>Workflow state</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th></th>
+<!--       <th></th>
+      <th></th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @net_cards.where(applicant_id: current_user.id).each do |net_card| %>
+      <tr>
+        <td><%= @applicants.find(net_card.applicant_id).name %></td>
+        <td><%= net_card.reviewer1_username %></td>
+        <!-- <td><%#= net_card.reviewer2_username %></td> -->
+        <td><%= net_card.workflow_state %></td>
+        <td><%= net_card.start_at %></td>
+        <td><%= net_card.end_at %></td>
+
+        <% if (net_card.workflow_state == "new" || net_card.workflow_state == "awaiting_review_by_1") %>
+            <td><%= link_to 'Edit', edit_net_card_path(net_card) %></td>
+        <% end %>
+
+<!--         <td><%#= link_to 'Show', net_card %></td>
+        <td><%#= link_to 'Edit', edit_net_card_path(net_card) %></td>
+        <td><%#= link_to 'Destroy', net_card, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<h2>您批阅的3G卡申请</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Applicant</th>
+      <th>Review1 username</th>
+  <!--   <th>Reviewer2 username</th> -->  
+    <th>Workflow state</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th></th>
+<!--       <th></th>
+      <th></th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @net_cards.where(reviewer1_username: current_user.username).each do |net_card| %>
+      <tr>
+        <td><%= @applicants.find(net_card.applicant_id).name %></td>
+        <td><%= net_card.reviewer1_username %></td>
+        <!-- <td><%#= net_card.reviewer2_username %></td> -->
+        <td><%= net_card.workflow_state %></td>
+        <td><%= net_card.start_at %></td>
+        <td><%= net_card.end_at %></td>
+
+        <td><%= link_to 'Show', net_card %></td>
+       <!--  <td><%#= link_to 'Edit', edit_net_card_path(net_card) %></td>
+        <td><%#= link_to 'Destroy', net_card, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

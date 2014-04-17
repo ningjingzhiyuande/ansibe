@@ -1,0 +1,16 @@
+<%# add navigation links to this file %>
+
+<% if user_signed_in?  %>
+	<li><%= link_to t('menu.attendance'), attendances_path %></li>
+	<li><%= link_to t('menu.net_card'), net_cards_path %></li>
+<% end %>
+<% if user_signed_in? %>
+  <li><%= link_to t('menu.edit_account'), edit_user_registration_path %></li>
+  <li><%= link_to t('menu.logout'), destroy_user_session_path, :method=>'delete' %></li>
+<% else %>
+  <li><%= link_to t('menu.login'), new_user_session_path %></li>
+  <li><%= link_to t('menu.sign_up'), new_user_registration_path %></li>
+<% end %>
+<% if user_signed_in? %>
+  <li><%= link_to t('menu.users'), users_path %></li>
+<% end %>

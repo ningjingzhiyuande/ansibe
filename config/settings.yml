@@ -1,0 +1,7 @@
+notifier:
+  email_username: "wenyang"
+  email_password: 'Deepblue1987'
+  address: '10.30.2.7'
+  port: 25
+  authentication: 'login'
+

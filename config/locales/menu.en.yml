@@ -1,0 +1,10 @@
+zh-CN:
+  menu:
+    home: 'Home'
+    login: 'Login'
+    sign_up: 'Sign Up'
+    attendance: 'Attendance'
+    net_card: 'NetCard'
+    edit_account: 'Edit Account'
+    logout: 'Logout'
+    users: 'Users'

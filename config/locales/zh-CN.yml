@@ -1,0 +1,20 @@
+zh-CN:
+  models:
+    user: "用户"
+    attendance: "考勤"
+    net_card: "网卡"
+  attributes:
+    user:
+      name: "姓名"
+      username: "Username"
+      email: "邮件"
+
+    attendance:  
+      applicant: "申请者"
+      reviewer1: "一级审阅者"
+      new_attendance: '请假条'
+      workflow_state: "状态"
+      awaiting_review_by_1: "等待一级审批"
+      
+
+

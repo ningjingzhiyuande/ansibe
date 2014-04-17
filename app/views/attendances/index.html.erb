@@ -1,0 +1,84 @@
+<h1>Listing attendances</h1>
+
+<%= link_to t('attendances.new_attendance'), new_attendance_path, class: "button [secondary alert success"%>
+
+<h2>您发出的申请</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t "attendances.applicant" %></th>
+      <th><%= t "attendances.reviewer1" %></th>
+      <!-- <th>Reviewer2</th> -->
+      <th><%= t "attendances.workflow_state" %> </th>
+      <th><%= t "attendances.leave_kind" %></th>
+      <th><%= t "attendances.start_at" %></th>
+      <th><%= t "attendances.end_at" %></th>
+      <th><%= t "attendances.created_at" %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @attendances.where(applicant_id: current_user.id).each do |attendance| %>
+      <tr>
+        <td><%#= @applicants.find(attendance.applicant_id).name %></td>
+        <td><%#= @reviewer1s.find_by_username(attendance.reviewer1_username).name %></td>
+        <!-- <td><%#= attendance.reviewer2_id %></td> -->
+        <td><%#= attendance.workflow_state %></td>
+        <td><%#= attendance.leave_kind %></td>
+        <td><%#= attendance.start_at %></td>
+        <td><%#= attendance.end_at %></td>
+        <td><%#= attendance.created_at %></td>
+
+        <% #if (attendance.workflow_state == "new" || attendance.workflow_state == "awaiting_review_by_1") %>
+            <td><%#= link_to 'Edit', edit_attendance_path(attendance) %></td>
+        <%# end %>
+
+
+      </tr>
+    <%# end %>
+  </tbody>
+</table>
+
+<br>
+
+<h2>您批阅的一级申请</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><%#= t "attendances.applicant" %></th>
+      <th><%#= t "attendances.reviewer1" %></th>
+      <!-- <th>Reviewer2</th> -->
+      <th><%#= t "attendances.workflow_state" %> </th>
+      <th><%#= t "attendances.kind" %></th>
+      <th><%#= t "attendances.start_at" %></th>
+      <th><%#= t "attendances.end_at" %></th>
+      <th><%#= t "attendances.created_at" %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% #@attendances.where(reviewer1_username: current_user.username).each do |attendance| %>
+      <tr>
+        <td><%#= @applicants.find(attendance.applicant_id).name %></td>
+        <td><%#= @reviewer1s.find_by_username(attendance.reviewer1_username).name %></td>
+        <!-- <td><%#= attendance.reviewer2_id %></td> -->
+        <td><%#= attendance.workflow_state %></td>
+        <td><%#= attendance.leave_kind %></td>
+        <td><%#= attendance.start_at %></td>
+        <td><%#= attendance.end_at %></td>
+        <td><%#= attendance.created_at %></td>
+        <td><%#= link_to 'Show', attendance %></td>
+  <!--       <td><%#= link_to 'Edit', edit_attendance_path(attendance) %></td>
+        <td><%#= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <%# end %>
+  </tbody>
+</table>
+
+<br>
+
+

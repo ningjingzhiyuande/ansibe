@@ -1,0 +1,10 @@
+en:
+  attendances: 
+    applicant: "Applicant"
+    reviewer1: "Reviewer1"
+    new_attendance: 'New Attendance'
+    workflow_state: "Workflow State"
+    leave_kind: "Leave Type"
+    start_at: "Start At"
+    end_at: "End At"
+    created_at: "Created At"

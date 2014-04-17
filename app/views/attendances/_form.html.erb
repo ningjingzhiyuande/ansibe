@@ -1,0 +1,28 @@
+<%= simple_form_for(@attendance) do |f| %>
+  <%= f.error_notification %>
+
+
+  <div class="form-inputs">
+
+    <%= f.hidden_field :applicant_id, value: current_user.id %>
+    <%= f.input :reviewer1_username, label: "一级审阅人的RTX Username" %>
+    <%#= f.input :reviewer2_id %>
+    <%= f.input :leave_kind, label: "请假类型" do %>
+      <%= f.select :leave_kind, LeaveKind.all.map { |r| [r.name, r.id] }, include_blank: true %>
+    <% end %>
+    <%= f.input :leave_excuse, label: "请假理由" %>
+    <%= f.date_select :start_at %>
+    <%= f.date_select :end_at %>
+  </div>
+
+  <div class="form-actions" data-tooltip class="has-tip" title="提交按钮（这个是tooltip)" >
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<script>
+  $(function(){
+    $('#attendance_start_at').datepicker({dateFormat: 'yy-mm-dd'})
+    $('#attendance_end_at').datepicker({dateFormat: 'yy-mm-dd'})
+  })
+</script>
+

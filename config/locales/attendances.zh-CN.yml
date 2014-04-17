@@ -1,0 +1,10 @@
+zh-CN:
+  attendances: 
+    new_attendance: '新建请假条'
+    applicant: "申请者"
+    reviewer1: "一级审阅者"
+    workflow_state: "状态"
+    leave_kind: "假期类别"
+    start_at: "开始日期"
+    end_at: "结束日期"
+    created_at: "创建于"

@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Workflow state:</strong>
+  <%= @attendance.workflow_state %>
+</p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @applicant.name %>
+</p>
+
+<p>
+  <strong>Reviewer1:</strong>
+  <%= @reviewer1.name %>
+</p>
+
+<p>
+  <strong>Leave kind:</strong>
+  <%= @attendance.leave_kind %>
+</p>
+
+<p>
+  <strong>Leave Excuse:</strong>
+  <%= @attendance.leave_excuse %>
+</p>
+<!-- <p>
+  <strong>Reviewer2:</strong>
+  <%#= @attendance.reviewer2_id %>
+</p> -->
+
+
+
+
+<p>
+  <strong>Start at:</strong>
+  <%= @attendance.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @attendance.end_at %>
+</p>
+
+<p>
+  <strong>Create at:</strong>
+  <%= @attendance.created_at %>
+</p>
+
+
+<% if (@attendance.workflow_state == "new" || @attendance.workflow_state == "awaiting_review_by_1") %>
+   <%= link_to 'Review', review_attendance_path(@attendance), method: :put%>
+<% end %>
+
+<br/> <br/>
+
+<% if (@attendance.workflow_state == "being_reviewed_by_1" ) %>
+<%= link_to "Approve", approve_attendance_path(@attendance), method: :put %>  |  
+<%= link_to "Reject", reject_attendance_path(@attendance), method: :put %>
+
+<% end %>
+
+
+<br/> <br/>
+
+<% if (@attendance.workflow_state == "new" || @attendance.workflow_state == "awaiting_review_by_1") %>
+  <%= link_to 'Edit', edit_attendance_path(@attendance) %> 
+<% end %>
+<br/> <br/>
+
+
+<%= link_to 'Back', attendances_path %>

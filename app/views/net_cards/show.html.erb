@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Workflow state:</strong>
+  <%= @net_card.workflow_state %>
+</p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @applicant.name %>
+</p>
+
+<p>
+  <strong>Reviewer1:</strong>
+  <%= @reviewer1.name %>
+</p>
+
+<p>
+  <strong>Excuse:</strong>
+  <%= @net_card.request_excuse %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @net_card.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @net_card.end_at %>
+</p>
+
+
+<p>
+  <strong>Create at:</strong>
+  <%= @net_card.created_at %>
+</p>
+
+
+<% if (@net_card.workflow_state == "new" || @net_card.workflow_state == "awaiting_review_by_1") %>
+   <%= link_to 'Review', review_net_card_path(@net_card), method: :put%>
+<% end %>
+
+<br/> <br/>
+
+<% if (@net_card.workflow_state == "being_reviewed_by_1" ) %>
+<%= link_to "Approve", approve_net_card_path(@net_card), method: :put %>  |  
+<%= link_to "Reject", reject_net_card_path(@net_card), method: :put %>
+
+<% end %>
+
+
+<br/> <br/>
+
+<% if (@net_card.workflow_state == "new" || @net_card.workflow_state == "awaiting_review_by_1") %>
+  <%= link_to 'Edit', edit_net_card_path(@net_card) %> 
+<% end %>
+<br/> <br/>
+
+
+<%= link_to 'Back', net_cards_path %>
