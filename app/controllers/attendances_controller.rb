@@ -3,15 +3,15 @@ class AttendancesController < ApplicationController
 
 
   def index
-    @attendances = Attendance.all
-   # @applicants = User.all
-   # @reviewer1s = Reviewer1.all
+  #  @attendances = 
+    @attendances = current_user.attendances
+    @review_attendances = current_user.review_attendances
   end
 
 
   def show
     @applicant = @attendance.applicant#User.find(@attendance.applicant_id)
-    @reviewer1 = @attendance.reviewer1 #User.where(@attendance.reviewer1_username)
+    @reviewer = @attendance.reviewer #User.where(@attendance.reviewer1_username)
   end
 
   def new

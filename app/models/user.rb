@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable #, :confirmable
 
   has_many :attendances, foreign_key: "applicant_id"
+  has_many :review_attendances,class_name: "Attendance", foreign_key: "reviewer2_id"
   has_many :net_cards, foreign_key: "applicant_id"
 
   has_enum :roles ,:enums => [[:user, 0, "普通用户"],[:chief, 1, "处长"],[:chairman, 2, "主任"],[:admin, 3, "管理员"]], \

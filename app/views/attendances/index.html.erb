@@ -20,24 +20,24 @@
   </thead>
 
   <tbody>
-    <%# @attendances.where(applicant_id: current_user.id).each do |attendance| %>
+    <% @attendances.each do |attendance| %>
       <tr>
-        <td><%#= @applicants.find(attendance.applicant_id).name %></td>
-        <td><%#= @reviewer1s.find_by_username(attendance.reviewer1_username).name %></td>
+        <td><%= current_user.name %></td>
+        <td><%= attendance.reviewer.try(:name) %></td>
         <!-- <td><%#= attendance.reviewer2_id %></td> -->
-        <td><%#= attendance.workflow_state %></td>
-        <td><%#= attendance.leave_kind %></td>
-        <td><%#= attendance.start_at %></td>
-        <td><%#= attendance.end_at %></td>
-        <td><%#= attendance.created_at %></td>
+        <td><%= attendance.workflow_state %></td>
+        <td><%= attendance.leave_kinds_name %></td>
+        <td><%= attendance.start_at %></td>
+        <td><%= attendance.end_at %></td>
+        <td><%= attendance.created_at %></td>
 
-        <% #if (attendance.workflow_state == "new" || attendance.workflow_state == "awaiting_review_by_1") %>
-            <td><%#= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <%# end %>
+        <% if (attendance.workflow_state == "new" || attendance.workflow_state == "awaiting_review_by_1") %>
+            <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+        <% end %>
 
 
       </tr>
-    <%# end %>
+    <% end %>
   </tbody>
 </table>
 
@@ -48,34 +48,34 @@
 <table>
   <thead>
     <tr>
-      <th><%#= t "attendances.applicant" %></th>
-      <th><%#= t "attendances.reviewer1" %></th>
+      <th><%= t "attendances.applicant" %></th>
+      <th><%= t "attendances.reviewer1" %></th>
       <!-- <th>Reviewer2</th> -->
-      <th><%#= t "attendances.workflow_state" %> </th>
-      <th><%#= t "attendances.kind" %></th>
-      <th><%#= t "attendances.start_at" %></th>
-      <th><%#= t "attendances.end_at" %></th>
-      <th><%#= t "attendances.created_at" %></th>
+      <th><%= t "attendances.workflow_state" %> </th>
+      <th><%= t "attendances.kind" %></th>
+      <th><%= t "attendances.start_at" %></th>
+      <th><%= t "attendances.end_at" %></th>
+      <th><%= t "attendances.created_at" %></th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% #@attendances.where(reviewer1_username: current_user.username).each do |attendance| %>
+    <% @review_attendances.each do |attendance| %>%>
       <tr>
-        <td><%#= @applicants.find(attendance.applicant_id).name %></td>
-        <td><%#= @reviewer1s.find_by_username(attendance.reviewer1_username).name %></td>
+        <td><%= attendance.applicant.name %></td>
+        <td><%= attendance.reviewer.name %></td>
         <!-- <td><%#= attendance.reviewer2_id %></td> -->
-        <td><%#= attendance.workflow_state %></td>
-        <td><%#= attendance.leave_kind %></td>
-        <td><%#= attendance.start_at %></td>
-        <td><%#= attendance.end_at %></td>
-        <td><%#= attendance.created_at %></td>
-        <td><%#= link_to 'Show', attendance %></td>
-  <!--       <td><%#= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <td><%#= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <td><%= attendance.workflow_state %></td>
+        <td><%= attendance.leave_kinds_name %></td>
+        <td><%= attendance.start_at %></td>
+        <td><%= attendance.end_at %></td>
+        <td><%= attendance.created_at %></td>
+        <td><%= link_to 'Show', attendance %></td>
+        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
       </tr>
-    <%# end %>
+    <% end %>
   </tbody>
 </table>
 

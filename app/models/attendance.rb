@@ -1,6 +1,6 @@
 class Attendance < ActiveRecord::Base
   belongs_to :applicant, class_name: "User",:foreign_key=>"applicant_id"
-  belongs_to :reviewer1, class_name: "User"  ,:foreign_key=>"reviewer2_id"
+  belongs_to :reviewer, class_name: "User"  ,:foreign_key=>"reviewer2_id"
  # belongs_to :reviewer2, class_name: "User"
   include SimpleEnum
 
