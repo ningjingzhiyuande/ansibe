@@ -30,7 +30,7 @@ db/*.sqlite3
 .redcar/
 .sass-cache
 /config/thin.yml
-/confing/settings.yml
+/config/settings.yml
 /coverage.data
 /coverage/
 /db/*.javadb/
