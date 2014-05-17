@@ -33,6 +33,17 @@ module Ansible
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = "zh-CN"
+    
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => 'oreatial',
+    :password             =>  "",
+    :authentication       => 'plain',
+    :enable_starttls_auto => true
+  }
+
 
     # For Foundation 5
     config.assets.precompile += %w( vendor/modernizr )

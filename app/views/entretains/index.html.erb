@@ -1,0 +1,51 @@
+<%= render 'entretain_header'%>
+<div style="text-align:center;color:green;" id="hot_message">
+  <%= flash[:notice] %>
+</div>
+
+
+
+<table class="grid">
+  <thead>
+    <tr>
+      <th width="15%">编号</th>
+      <th width="10%">类型</th>
+      <th width="25%">标题</th>
+      <th width="15%">登录时间</th>   
+      <th width="10%">登录人</th> 
+      <th width="25%">状态</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+    
+ <% @entretains.each do |entretain| %>
+    <tr>
+      <td><%= entretain.num %></td>
+      <td>招待宴请</td>
+      <td><%=link_to entretain.title,entretain %></td>
+      <td><%= entretain.created_at.to_date %></td>
+      <td><%= entretain.user.name %></td>
+       <td class="with_form"><div class="f1 f"><%= entretain.aasm_state %></div>
+        <%if entretain.is_reporter?(current_user.id)%>
+            <%entretain.aasm.events.each do |e|%>
+               <div class="f1 f"> <%=form_for :entretain,:url=>auddit_entretain_url(entretain,e: e) do |f|%>
+                   <%=f.submit "#{e.to_s}"%>
+                   </div>
+                <%end%>
+            <%end%>
+        <%end%>
+       </td>
+   
+    </tr>
+  <% end %>
+  <% if @entretains.blank? %>
+    <tr>
+      <td colspan="6">暂无相关数据</td>
+    </tr>
+    <% end -%>
+  </tbody>
+</table>
+<%#= will_paginate(@entretains) -%>
+
+

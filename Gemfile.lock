@@ -7,6 +7,7 @@ GIT
 GEM
   remote: http://ruby.taobao.org/
   specs:
+    aasm (3.1.1)
     actionmailer (4.0.3)
       actionpack (= 4.0.3)
       mail (~> 2.5.4)
@@ -38,13 +39,17 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     builder (3.1.4)
-    cancan (1.6.10)
     capybara (2.2.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -91,9 +96,6 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
-    foundation-rails (5.2.2.0)
-      railties (>= 3.1.0)
-      sass (>= 3.2.0)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     guard (2.6.0)
@@ -139,6 +141,8 @@ GEM
     migration_comments (0.3.1)
       activerecord (>= 2.3.2)
     mime-types (1.25.1)
+    mini_magick (3.7.0)
+      subexec (~> 0.2.1)
     mini_portile (0.5.3)
     minitest (4.7.5)
     multi_json (1.9.2)
@@ -171,6 +175,9 @@ GEM
       rails (>= 4.0)
     rails_config (0.3.2)
       activesupport (>= 3.0)
+    rails_kindeditor (0.4.5)
+      carrierwave
+      mini_magick
     rails_layout (1.0.14)
     railties (4.0.3)
       actionpack (= 4.0.3)
@@ -219,6 +226,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    subexec (0.2.3)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -246,16 +254,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   better_errors
-  cancan
   capybara
+  carrierwave
   coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner (= 1.0.1)
   devise
   email_spec
   factory_girl_rails
-  foundation-rails
   guard-bundler
   guard-cucumber
   guard-rails
@@ -264,12 +272,15 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
+  mail
   migration_comments (~> 0.3.1)
+  mini_magick
   mysql2
   quiet_assets
   rails (= 4.0.3)
   rails-i18n
   rails_config (= 0.3.2)
+  rails_kindeditor
   rails_layout
   rb-fchange
   rb-fsevent

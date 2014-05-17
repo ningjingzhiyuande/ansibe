@@ -1,39 +1,61 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>Sign up</h3>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-    </div>
+<h1 class="title"> 注册</h1>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+ <%= devise_error_messages! %>
 
-    <!--<div class="form-group">
-      <%#= f.label :username %> 请填入RTX的用户名字, 例如：wenyang
-      <%#= f.text_field :username, :autofocus => true, class: 'form-control' %>
-    </div>-->
+  <div><span class="red"><%= flash[:notice]%></span></div>
+  <div class="order_number"> 
+    <table class="grid_order">
+      <tbody>
+        <tr height="35">
+          <td class="td01"><b>*</b>您的邮箱</td>
+          <td>
+         
+           <%= f.email_field :email, :validate => true%>
+             <span>
+             <label class="message error" id="err_name" style="display:none;">请填写您的邮箱</label>
+          </td>
+        </tr>
+        <tr height="35">
+          <td class="td01"><b>*</b>您的名字</td>
+          <td>
+         
+            <%= f.text_field :name, :autofocus => true, :validate => true%>
+             <span>
+             <label class="message error" id="err_name" style="display:none;">请填写您的名字</label>
+          </td>
+        </tr>
 
-    <div class="form-group">
-      <%= f.label :department  %>
-      <%= f.select :department, User.options_for_departments%>
-   
-    </div>
-     <!--<div class="form-group">
-      <%#= f.label :role  %>
-      <%#= f.select :role, User.options_for_roles%>
-   
-    </div>-->
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-    </div>
-     <%= f.submit 'Sign up', :class => 'button right' %>
-  <% end %>
+        <tr height="35">
+          <td class="td01">公司部门</td>
+          <td> <%= f.select :department, User.options_for_departments%></td>
+        </tr>
+        
+          <tr height="35">
+          <td class="td01">职位级别</td>
+          <td> <%= f.select :role, User.options_for_roles%></td>
+        </tr>
+        
+        <tr height="35">
+          <td class="td01">设置密码</td>
+          <td>
+             <%= f.password_field :password%>
+          </td>
+        </tr>
+        <tr height="35">
+          <td class="td01">密码确认</td>
+          <td>
+             <%= f.password_field :password_confirmation %>
+          </td>
+        </tr>
+        
+       
+      </tbody>
+    </table>
+  </div>
+<div class="clear"></div>
+<div class="actions" style="text-align:center">
+  <%= f.submit '注册', :class => "save" %>
 </div>
+  <% end %>
+
+

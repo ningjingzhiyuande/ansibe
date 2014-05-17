@@ -1,29 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Ansible" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ansible" %>">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%# Modernizr is required for Zurb Foundation %>
-    <%= javascript_include_tag 'vendor/modernizr' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <!--[if (lt IE 9) & (!IEMobile)]>
-    <%= javascript_include_tag 'respond.js' %>
-    <![endif]-->
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-      <div id="nav" class="right">
-        <%= link_to_unless_current "English", locale: "en" %>
-        <%= link_to_unless_current "中文", locale: "zh-CN" %>
-      </div>
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
-  </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+<link rel="shortcut icon" type="image/ico" href="/images/global/logos/bitbug_favicon.ico" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>核电信息化系统</title>
+		  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= yield :header %>
+	</head>
+	<body>
+		<div id="wapper">
+			<div id="head">
+				<div class="top_menu">
+					
+					<% if current_user %>
+                       登录为<a href=""><%= current_user.name %>
+					<a href="">修改密码</a>
+					<%=link_to '退出',destroy_user_session_path%>
+					<%else %>
+					  <div class="top_menu"><a href="/users/sign_in">登录</a><a href="/users/sign_up">注册</a></div>
+					<% end -%>
+				</div>
+				<div class="logo">
+					核电信息化系统
+				</div>
+			</div>
+			<div id="middle">
+				<%= render '/layouts/navigation_links' %>
+				<div id="css_mainbody">
+					<%= yield %>
+				</div>
+				<div class="clear"></div>
+			</div>
+		
+		</div>
+
+	</body>
 </html>

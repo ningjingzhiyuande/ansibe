@@ -1,0 +1,9 @@
+<%=@entretain.user.try(:name)%>,您好：
+
+    <%=@entretain.user.try(:name)%>申请的宴请内容已经被<%=@entretain.report_user.name%>审阅.
+    审阅结果：<%=@entretain.aasm_state%>
+    
+    <h3>
+     <a href="<%=@url%>/entretains/<%=@entretain.id%>%>">查看</a> 
+
+    </h3>

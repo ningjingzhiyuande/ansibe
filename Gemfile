@@ -9,9 +9,10 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'cancan'
+gem 'rails_kindeditor'
+
 gem 'devise'
-gem 'foundation-rails'
+gem 'mail'
 gem 'mysql2'
 gem 'rolify'
 gem 'simple_form'
@@ -19,10 +20,12 @@ gem 'thin'
 gem 'workflow'
 gem 'migration_comments', '~> 0.3.1'
 gem "rails_config", '0.3.2'
-
+gem 'aasm'
 gem "simple_enums" ,:git=>"https://github.com/caryl/simple_enum.git"
 
 gem 'rails-i18n'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'better_errors'

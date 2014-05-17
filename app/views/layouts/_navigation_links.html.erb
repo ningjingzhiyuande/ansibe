@@ -1,16 +1,35 @@
 <%# add navigation links to this file %>
+<div id="css_sidebar">
+  <h1 class="title">信息化流程</h1>
+  <div class="panel">
+  <% if user_signed_in?  %>
+<div class='panel_title'><a href='javascript:void(0)'>人事管理</a></div>
+<ul class='list'>
+<li><a href=''   >员工基本信息</a></li>
+<li><a href=''   >员工照片</a></li>
+<li><a href=''   >员工成绩</a></li>
+</ul>
+<div class='panel_title'><a href='javascript:void(0)'>行政管理</a></div>
+<ul class='list'><li><a href=''   >请假</a></li>
+<li><a href=''   >用车</a></li>
+<li><a href='/entretains'   >宴请</a></li>
+<li><a href=''   >3G上网卡</a></li>
+<li><a href=''   >U盘使用</a></li>
+</ul>
+<div class='panel_title'><a href='javascript:void(0)'>培训管理</a></div>
+<ul class='list'><li><a href=''   >培训计划</a></li>
+<li><a href=''   >培训讲师</a></li>
 
-<% if user_signed_in?  %>
-	<li><%= link_to t('menu.attendance'), attendances_path %></li>
-	<li><%= link_to t('menu.net_card'), net_cards_path %></li>
-<% end %>
-<% if user_signed_in? %>
-  <li><%= link_to t('menu.edit_account'), edit_user_registration_path %></li>
-  <li><%= link_to t('menu.logout'), destroy_user_session_path, :method=>'delete' %></li>
-<% else %>
-  <li><%= link_to t('menu.login'), new_user_session_path %></li>
-  <li><%= link_to t('menu.sign_up'), new_user_registration_path %></li>
-<% end %>
-<% if user_signed_in? %>
-  <li><%= link_to t('menu.users'), users_path %></li>
-<% end %>
+</ul>
+<div class='panel_title'><a href='javascript:void(0)'>系统管理</a></div>
+<ul class='list'><li><a href=''   >用户设置</a></li>
+<li><a href=''   >权限</a></li>
+
+</ul>
+
+ <%end%>
+  </div>
+  <div class="clear"></div>
+</div>
+
+

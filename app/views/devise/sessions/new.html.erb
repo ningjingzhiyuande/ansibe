@@ -1,26 +1,54 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>Log in</h3>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%- if devise_mapping.registerable? %>
-        <%= link_to 'Sign up', new_registration_path(resource_name), class: 'right'  %>
-      <% end -%>
-      <%= f.label :email %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="shortcut icon" type="image/ico" href="/images/global/logos/bitbug_favicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>核电信息化系统</title>
+<%= csrf_meta_tag %>
+<%= stylesheet_link_tag "application" %>
+</head>
+<body>
+<div id="wapper">
+    <div id="head">
+        <div class="top_menu"><a href="/users/sign_in">登录</a><a href="/users/sign_up">注册</a></div>
+        <div class="logo">核电信息化系统</div>
     </div>
-    <div class="form-group">
-      <%- if devise_mapping.recoverable? %>
-        <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
-      <% end -%>
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
-      <%= f.submit 'Log in', :class => 'button right' %>
-      <% if devise_mapping.rememberable? -%>
-        <div class="checkbox">
-          <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+    <div id="middle">
+        <div class="login_content">
+            <table class="login">
+                 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+
+                    <tbody>
+                        <tr>
+                            <td class="t01"><label for="username">登录名：</label></td>
+                            <td class="t02">
+                               <%= f.email_field :email, :autofocus => true, class: 'post_name' %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="t01"><label for="password">密码：</label></td>
+                            <td class="t02">
+                             <%= f.password_field :password, class: 'post_name' %>
+                            </td>
+                        </tr>
+                        <tr height="20">
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="t01"></td>
+                            <td class="t03"><button onmouseout="this.className='button_submit_s';" onmouseover="this.className='button_submit_s button_submit_s_hover';" type="submit" class="button_submit_s"> 登录&gt;&gt;</button></td>
+                        </tr>
+                    </tbody>
+                <% end -%>
+            </table>
         </div>
-      <% end -%>
-  <% end %>
+        <div class="clear"></div>
+    </div>
+   
 </div>
+</body>
+</html>
+

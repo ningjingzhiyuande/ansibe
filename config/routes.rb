@@ -1,4 +1,11 @@
 Ansible::Application.routes.draw do
+  resources :entretains do 
+      member do 
+        post :auddit
+        get :auddit_from_mail
+      end
+  end
+
   resources :net_cards do
     member do    #  requests/30/approve
       put :approve
@@ -22,6 +29,7 @@ Ansible::Application.routes.draw do
   end
 
   root :to => "home#index"
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :controllers => {:registrations => "registrations",sessions: "sessions"},path_names: {sign_out: 'logout'}
+
   resources :users
 end

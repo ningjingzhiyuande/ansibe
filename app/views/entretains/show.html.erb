@@ -1,0 +1,53 @@
+<%= render 'entretain_header'%>
+<h3 class='center margintop15'><%=@entretain.title%></h3>
+<div class="order_number">
+  <table class="grid_order">
+    <tbody>
+      <tr height="35">
+        <td class="td01">标题：</td>
+        <td colspan="3">
+          <%= @entretain.title%>
+        </td>
+      </tr>
+      <tr height="35">
+        <td class="td01">文件标号：</td>
+        <td colspan="3">
+	    <%= @entretain.num%>
+        </td>
+      </tr>
+      <tr height="35">
+        <td class="td01">审批者：</td>
+        <td>
+          <%=@entretain.report_user.try(:name)%>
+        </td>
+        </tr>
+      <tr>
+        <td class="td01">登录者：</td>
+        <td>
+          <%= @entretain.user.try(:name) %>
+        </td>
+      </tr>
+       <tr>
+        <td class="td01">登录时间：</td>
+        <td>
+          <%= @entretain.created_at.to_s %>
+        </td>
+      </tr>
+    
+      
+      <tr height="35">
+        <td class="td01">内容</td>
+        <td colspan="3"><div style="padding:20px 10px;"><%=raw @entretain.content %></div>
+        </td>
+      </tr>
+
+      <tr height="35">
+        <td class="td01"><b></b>附件：</td>
+        <td colspan="3"><div style="padding:20px 10px;">
+          <img src="<%=@entretain.attache_url%>" width=100 height=100/>
+          </div>
+        </td>
+      </tr>
+     </tbody>
+     </table>
+     </div>
