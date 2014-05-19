@@ -26,4 +26,16 @@ Ansible::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => false,
+    :address              => Settings.notifier.address,
+    :port                 => Settings.notifier.port,
+    :password             => Settings.notifier.email_password,
+    :user_name            => Settings.notifier.email_username,
+    :authentication       => Settings.notifier.authentication
+  }
 end

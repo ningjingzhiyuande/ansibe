@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_enum :roles ,:enums => [[:user, 0, "用户"],[:chief, 100, "处长"],[:chairman, 200, "主任"]], \
       :column => :role, :default => :user
 
-  has_enum :departments ,:enums => [[:caigou, 0, "采购部"],[:zongguan, 1, "综合管理处"],[:jihua, 2, "计划处"],\
+  has_enum :departments ,:enums => [[:caigou, 0, "采购部Leaders"],[:zongguan, 1, "综合管理处"],[:jihua, 2, "计划处"],\
            [:hetong, 3, "合同管理处"],[:jiyi, 4, "机械一处"],[:jier, 5, "机械二处"],[:yikong, 3, "仪控处"],[:dianqi, 6, "电气处"],\
            [:jianzao, 7, "监造处"],[:zhibao, 8, "质量保证处"],[:xitong, 9, "系统设备及大宗材料处"]], 
       :column => :department, :default => :caigou
