@@ -86,3 +86,6 @@ thin.6662.pid
 thin.6663.pid
 thin.6664.pid
 
+.rbenv-gemsets
+.ruby-version
+
