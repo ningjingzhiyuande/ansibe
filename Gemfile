@@ -10,6 +10,7 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'rails_kindeditor'
+gem 'roo'
 
 gem 'devise'
 gem 'mail'
