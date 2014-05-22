@@ -38,8 +38,8 @@ class Entretain < ActiveRecord::Base
     end
 
 
-    def self.report_user(current_user)
-    	User.where("role in （?） AND department = ?", [100,200], current_user.department).select(:id,:name).collect{|u|[u.name,u.id]}   	
+    def self.report_user(user)
+    	User.where(role:[100,200]).where(department: user.department).select(:id,:name).collect{|u|[u.name,u.id]}   	
     end
     def is_reporter?(user_id)
     	reporter_id==user_id
