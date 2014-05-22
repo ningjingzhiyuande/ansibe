@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :entretains
   has_many :report_entretains, foreign_key: "reporter_id",class_name: "Entretain"
   #,[:admin, 300, "管理员"]
-  has_enum :roles ,:enums => [[:user, 0, "用户"],[:chief, 100, "处长"],[:chairman, 200, "主任"]], \
+  has_enum :roles ,:enums => [[:user, 0, "员工"],[:chief, 100, "处长"],[:chairman, 200, "主任"]], \
       :column => :role, :default => :user
 
   #has_enum :departments ,:enums => [[:caigou, 6100, "采购部主任"],[:zongguan, 6101, "综合管理处"],[:jihua, 6102, "计划处"],\

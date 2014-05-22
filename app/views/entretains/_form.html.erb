@@ -4,9 +4,9 @@
   <table class="grid_order">
     <tbody>
       <tr height="35">
-        <td class="td01">标题：</td>
+        <td class="td01">所属项目：</td>
         <td>
-          <%= f.text_field :title, :size=>50 %>
+          <%= f.select :title, Entretain.options_for_titles %>
         </td>
       </tr>
       <tr height="35">
@@ -18,7 +18,7 @@
       <tr height="35">
         <td class="td01">审批者：</td>
         <td>
-          <%= f.select :reporter_id,Entretain.report_user %>
+          <%= f.select :reporter_id, Entretain.report_user(current_user) %>
         </td>
       </tr>
       
