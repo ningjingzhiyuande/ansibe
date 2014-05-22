@@ -70,6 +70,6 @@ class EntretainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entretain_params
-      params.require(:entretain).permit(:user_id, :title, :content, :reporter_id,:num,:attache)
+      params.require(:entretain).permit(:user_id, :title, :location, :content, :reporter_id,:num,:attache)
     end
 end

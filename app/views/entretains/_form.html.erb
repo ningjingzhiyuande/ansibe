@@ -15,6 +15,15 @@
 	    <%= f.text_field :num,value: "宴请-#{Date.today.to_s}-#{rand(10000)}"%>
         </td>
       </tr>
+      
+      <tr height="35">
+        <td class="td01">宴请地点：</td>
+        <td>
+          <%= f.select :location, Entretain.options_for_locations %>
+        </td>
+      </tr>
+
+
       <tr height="35">
         <td class="td01">审批者：</td>
         <td>
