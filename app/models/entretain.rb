@@ -8,6 +8,7 @@ class Entretain < ActiveRecord::Base
   has_enum :titles ,:enums => [[:fuqing12, 1, "福清12"],[:fuqing34, 2, "福清34"],[:fuqing56, 3, "福清56"], \
           [:fangjiashan, 4, "方家山"],[:hainan, 5, "海南"],[:tianwan34, 6, "田湾34"],[:xudapu, 7, "徐大堡"],\
           [:baeryi, 8, "821"],[:others, 9, "其他"]], :column => :title, :default => :fuqing12
+  has_enum :locations, :enums => [[:xiangechun, 1, "湘鄂春"], [:lingdian, 2 , "零点餐厅"], :others, 3, "其他"], column: :location, :default: :xiangechun
 
   include AASM
 	mount_uploader :attache, AttacheUploader
