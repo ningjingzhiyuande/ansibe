@@ -18,7 +18,7 @@
       <tr height="35">
         <td class="td01">审批者：</td>
         <td>
-          <%= f.select :reporter_id,Entretain.report_user %>
+          <%= f.select :reporter_id, Entretain.report_user(current_user) %>
         </td>
       </tr>
       
