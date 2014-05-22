@@ -6,7 +6,7 @@ namespace :user do
 
     	#puts  "导入用户的文件地址(绝对的地址)\n"
     	#file =  STDIN.gets.chomp
-    	file = "/Users/sgd/Downloads/CGBPDetail.xls"
+    	file = "/home/yang/Sites/ansibe/CGBPDetail.xls"
     	content = Roo::Spreadsheet.open(file)
     	#binding.pry
     	(2..481).to_a.each do |i|
