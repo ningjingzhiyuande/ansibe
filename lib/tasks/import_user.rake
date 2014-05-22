@@ -15,8 +15,9 @@ namespace :user do
               hash["name"]=content.cell("A",i)
               hash["email"]=content.cell("B",i).to_s+"@cnpe.cc"
               hash["username"]=content.cell("B",i)
-              hash["department"]=content.cell("C",i)
-              hash["password"]=content.cell("H",i).to_s[-6,6]
+              hash["department"]=content.cell("C",i).to_i
+              hash["password"]= "123456"  #content.cell("H",i).to_s[-6,6]
+              puts hash.inspect
            User.create(hash)
           # end
     	end
