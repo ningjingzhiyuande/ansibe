@@ -1,13 +1,14 @@
 class Entretain < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :report_user,foreign_key: "reporter_id",class_name: "User"
-	after_save :send_apply_mail,:if => Proc.new{|r| r.aasm_state_changed? && r.aasm_state=="auditting"} 
-	after_save :send_finished_mail,:if => Proc.new{|r| r.aasm_state_changed? && (["acceptting","rejectting"].include? r.aasm_state)} 
+	belongs_to :last_report_user,foreign_key: "last_reporter_id",class_name: "User"
+	#after_save :send_apply_mail,:if => Proc.new{|r| r.aasm_state_changed? && r.aasm_state=="auditting"} 
+	#after_save :send_finished_mail,:if => Proc.new{|r| r.aasm_state_changed? && (["acceptting","rejectting"].include? r.aasm_state)} 
   
   include SimpleEnum
-  has_enum :titles ,:enums => [[:fuqing12, 1, "福清12"],[:fuqing34, 2, "福清34"],[:fuqing56, 3, "福清56"], \
-          [:fangjiashan, 4, "方家山"],[:hainan, 5, "海南"],[:tianwan34, 6, "田湾34"],[:xudapu, 7, "徐大堡"],\
-          [:baeryi, 8, "821"],[:others, 9, "其他"]], :column => :title, :default => :fuqing12
+  has_enum :titles ,:enums => [[:fuqing12, "1", "福清12"],[:fuqing34, "2", "福清34"],[:fuqing56, "3", "福清56"], \
+          [:fangjiashan, "4", "方家山"],[:hainan, "5", "海南"],[:tianwan34, "6", "田湾34"],[:xudapu, "7", "徐大堡"],\
+          [:baeryi, "8", "821"],[:others, "9", "其他"]], :column => :title, :default => :fuqing12
   has_enum :locations, :enums => [[:xiangechun, 1, "湘鄂春"], [:lingdian, 2 , "零点餐厅"],\
          [:others, 3, "其他"]], :column => :location, :default => :xiangechun
 
@@ -18,22 +19,38 @@ class Entretain < ActiveRecord::Base
       state :auditting
       state :acceptting
       state :rejectting
+
+      state :last_acceptting
+      state :last_rejectting
+    
       event :audit do
-         transitions :from => :applying, :to => :auditting#, :guard => :send_apply_mail
+         transitions :from => :applying, :to => :auditting, :guard => :send_apply_mail
       end
       event :accept do
-      	 transitions :from => :auditting, :to => :acceptting#, :guard => :send_finished_mail
+      	 transitions :from => :auditting, :to => :acceptting, :guard => :send_superior_mail
       end
       event :reject do
-      	 transitions :from => :auditting, :to => :rejectting#, :guard => :send_finished_mail
+      	 transitions :from => :auditting, :to => :rejectting, :guard => :send_finished_mail
       end
+      event :last_accept do
+      	 transitions :from => :acceptting, :to => :last_acceptting, :guard => :send_finished_mail
+      end
+      event :last_reject do
+      	 transitions :from => :acceptting, :to => :last_rejectting, :guard => :send_finished_mail
+      end
+
+
     end
     def set_state
     	self.audit! if aasm_state=="applying" && !reporter_id.blank?
     end
 
     def send_apply_mail
+    	#binding.pry
     	EntretainMail.send_apply_mail(self).deliver
+    end
+    def send_superior_mail
+    	EntretainMail.send_superior_mail(self).deliver
     end
     def send_finished_mail
     	EntretainMail.send_finished_mail(self).deliver

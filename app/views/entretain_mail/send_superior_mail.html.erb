@@ -1,0 +1,12 @@
+<%=@entretain.last_report_user.try(:name)%>,您好：<br/>
+
+    <%=@entretain.user.try(:name)%>申请的宴请内容:<br/>
+    <h3><%@entretain.title%></h3>
+    <%=raw @entretain.content%>
+
+    <h3><br/>
+    已经被<%=@entretain.report_user.try(:name)%>审批通过，请您再次审核。<br/>
+     <a href="<%=@url%>/entretains/<%=@entretain.id%>/auddit_from_mail?token=<%=Base64.encode64(@entretain.last_report_user.email)%>&e=<%=Base64.encode64('last_accept')%>">同意该申请</a> 
+
+    <a href="<%=@url%>/entretains/<%=@entretain.id%>/auddit_from_mail?token=<%=Base64.encode64(@entretain.last_report_user.email)%>&e=<%=Base64.encode64('last_reject')%>">拒绝该申请</a>   
+    </h3>

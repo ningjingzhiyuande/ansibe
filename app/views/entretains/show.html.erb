@@ -1,12 +1,12 @@
 <%= render 'entretain_header'%>
-<h3 class='center margintop15'><%=@entretain.title%></h3>
+<h3 class='center margintop15'><%=@entretain.titles_name%></h3>
 <div class="order_number">
   <table class="grid_order">
     <tbody>
       <tr height="35">
         <td class="td01">标题：</td>
         <td colspan="3">
-          <%= @entretain.title%>
+          <%= @entretain.titles_name%>
         </td>
       </tr>
       <tr height="35">
@@ -18,7 +18,7 @@
       <tr height="35">
         <td class="td01">审批者：</td>
         <td>
-          <%=@entretain.report_user.try(:name)%>
+          <%=@entretain.report_user.try(:name)%>  ---->  <%=@entretain.last_report_user.try(:name)%>
         </td>
         </tr>
       <tr>

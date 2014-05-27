@@ -9,7 +9,7 @@ class EntretainsController < ApplicationController
   		@entretains = current_user.entretains
 
   	elsif params[:q]=="report"
-        @entretains = current_user.report_entretains
+        @entretains =Entretain.where(["last_reporter_id=? or reporter_id=?", current_user.id,current_user.id])
     else
         @entretains = Entretain.where(["user_id=? or reporter_id=?", current_user.id,current_user.id])
     end
@@ -55,9 +55,11 @@ class EntretainsController < ApplicationController
      email =  Base64.decode64(params["token"])
      motion =  Base64.decode64(params["e"])
      user = User.find_by(email: email)
-     return :text => "error" unless user 
-     return :text => "bushi " if user.id !=  @entretain.reporter_id
+      
+     return render :text => "error" unless user 
+     return render :text => "bushi " unless  [@entretain.reporter_id, @entretain.last_reporter_id].include? user.id 
      sign_in user  
+
      @entretain.send(motion)
     redirect_to entretains_url if  @entretain.save
   end
@@ -70,6 +72,6 @@ class EntretainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entretain_params
-      params.require(:entretain).permit(:user_id, :title, :location, :content, :reporter_id,:num,:attache)
+      params.require(:entretain).permit(:user_id, :title, :location,:last_reporter_id, :content, :reporter_id,:num,:attache)
     end
 end
