@@ -18,9 +18,9 @@ namespace :entertainments do
               hash["location"]=content.cell("D",i)
               hash["created_at"]=content.cell("G",i)
               hash["updated_at"]=content.cell("M",i)
-              hash["user"]=User.find_by(name: content.cell("E",i).to_i)
-              hash["reporter"]= User.find_by(name: content.cell("H",i).to_i)  #content.cell("H",i).to_s[-6,6]
-              hash["last_reporter"]= User.find_by(name: content.cell("k",i).to_i)  #content.cell("H",i).to_s[-6,6]
+              hash["user_id"]=User.find_by(name: content.cell("E",i).to_i).try(:id)
+              hash["reporter_id"]= User.find_by(name: content.cell("H",i).to_i).try(:id)  #content.cell("H",i).to_s[-6,6]
+              hash["last_reporter_id"]= User.find_by(name: content.cell("k",i).to_i).try(:id)  #content.cell("H",i).to_s[-6,6]
               puts hash.inspect
 
 
