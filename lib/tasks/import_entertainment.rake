@@ -1,10 +1,10 @@
 require 'spreadsheet'
-namespace :entertainments do
+namespace :entertainment do
 	
-   desc 'import entertainments' 
+   desc 'import entertainment' 
    task :import => :environment do 
 
-    	puts  "导入用户的文件地址(绝对的地址)\n"
+    	puts  "/home/yang/Desktop/tb_yanqing.xls\n"
     	file =  STDIN.gets.chomp
     	#file = "/home/yang/Sites/ansibe/CGBPDetail.xls"
     	content = Roo::Spreadsheet.open(file)
@@ -20,12 +20,14 @@ namespace :entertainments do
               hash["updated_at"]=content.cell("M",i)
               hash["user_id"]=User.find_by(name: content.cell("E",i).to_i).try(:id)
               hash["reporter_id"]= User.find_by(name: content.cell("H",i).to_i).try(:id)  #content.cell("H",i).to_s[-6,6]
-              hash["last_reporter_id"]= User.find_by(name: content.cell("k",i).to_i).try(:id)  #content.cell("H",i).to_s[-6,6]
+              hash["last_reporter_id"]= User.find_by(name: content.cell("K",i).to_i).try(:id)  #content.cell("H",i).to_s[-6,6]
               puts hash.inspect
 
 
-            u = User.new(hash)
-            u.department = content.cell("C",i).to_i
+            u = Entretain.new(hash)
+            u.title = content.cell("B",i).to_i
+            u.location = content.cell("D",i).to_i
+
             u.save
           # end
     	end
