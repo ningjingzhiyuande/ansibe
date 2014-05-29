@@ -12,23 +12,21 @@ namespace :entertainment do
     	(1..155).to_a.each do |i|
            hash={}
           # ["A","B","C","H"].each do |col|
-              hash["title"]=content.cell("B",i)
-              hash["num"]=content.cell("O",i)
-              hash["content"]=content.cell("C",i)  #.to_s+"@cnpe.cc"
-              hash["location"]=content.cell("D",i)
-              hash["created_at"]=content.cell("G",i)
-              hash["updated_at"]=content.cell("M",i)
-              hash["user_id"]=User.find_by(name: content.cell("E",i).to_i).try(:id)
-              hash["reporter_id"]= User.find_by(name: content.cell("H",i).to_i).try(:id)  #content.cell("H",i).to_s[-6,6]
-              hash["last_reporter_id"]= User.find_by(name: content.cell("K",i).to_i).try(:id)  #content.cell("H",i).to_s[-6,6]
-              puts hash.inspect
-
-
-            u = Entretain.new(hash)
-            u.title = content.cell("B",i).to_i
-            u.location = content.cell("D",i).to_i
-
-            u.save
+            begin
+              u = Entretain.new
+              u.title =  Entretain.titles_value(content.cell("B",i)) #content.cell("B",i)
+              u.num=content.cell("O",i).to_i
+              u.content=content.cell("C",i)  #.to_s+"@cnpe.cc"
+              u.location=Entretain.locations_value(content.cell("D",i)) #content.cell("D",i)
+              u.created_at=content.cell("G",i)
+              u.updated_at=content.cell("M",i)
+              u.user_id=User.find_by(name: content.cell("E",i)).try(:id)
+              u.reporter_id= User.find_by(name: content.cell("H",i)).try(:id)  #content.cell("H",i).to_s[-6,6]
+              u.last_reporter_id= User.find_by(name: content.cell("K",i)).try(:id)  #content.cell("H",i).to_s[-6,6]
+              u.save
+            rescue
+            	next
+            end
           # end
     	end
     	
