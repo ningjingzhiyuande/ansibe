@@ -25,6 +25,14 @@
 
 
       <tr height="35">
+        <td class="td01">宴请费用：</td>
+        <td>
+          <%= f.text_field :fee, Entretain.fee %>
+        </td>
+      </tr>
+
+
+      <tr height="35">
         <td class="td01">审批者：</td>
         <td>
           <%= f.select :reporter_id, Entretain.report_user(current_user) %> -------> <%= f.select :last_reporter_id, Entretain.last_report_user(current_user) %>

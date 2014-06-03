@@ -10,8 +10,9 @@
     <tr>
       <th width="15%">编号</th>
       <th width="10%">类型</th>
-      <th width="25%">所属项目</th>
-      <th width="15%">登录时间</th>   
+      <th width="15%">所属项目</th>
+      <th width="10%">用餐费用</th>
+      <th width="15%">申请时间</th>   
       <th width="10%">申请人</th> 
       <th width="25%">审批状态</th>
     </tr>
@@ -25,6 +26,7 @@
       <td>招待宴请</td>
       <td><%=link_to entretain.titles_name,entretain %></td>
       <td><%= entretain.created_at.to_date %></td>
+      <td><%= entretain.fee %></td>
       <td><%= entretain.user.name %></td>
        <td class="with_form"><div class="f1 f"><%= entretain.aasm_state %></div>
         <%if entretain.is_reporter?(current_user.id)%>
