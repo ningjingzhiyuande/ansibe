@@ -4,7 +4,7 @@
   <table class="grid_order">
     <tbody>
       <tr height="35">
-        <td class="td01">标题：</td>
+        <td class="td01">所属项目：</td>
         <td colspan="3">
           <%= @entretain.titles_name%>
         </td>
@@ -18,11 +18,11 @@
       <tr height="35">
         <td class="td01">审批者：</td>
         <td>
-          <%=@entretain.report_user.try(:name)%>  ---->  <%=@entretain.last_report_user.try(:name)%>
+          一级<%=@entretain.report_user.try(:name)%>  ----> 二级 <%=@entretain.last_report_user.try(:name)%>
         </td>
         </tr>
       <tr>
-        <td class="td01">登录者：</td>
+        <td class="td01">申请者：</td>
         <td>
           <%= @entretain.user.try(:name) %>
         </td>
