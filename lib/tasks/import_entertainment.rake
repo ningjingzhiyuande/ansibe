@@ -9,7 +9,7 @@ namespace :entertainment do
     	#file = "/home/yang/Sites/ansibe/CGBPDetail.xls"
     	content = Roo::Spreadsheet.open(file)
     	#binding.pry
-    	(1..155).to_a.each do |i|
+    	(1..139).to_a.each do |i|
            hash={}
           # ["A","B","C","H"].each do |col|
             begin
@@ -23,6 +23,7 @@ namespace :entertainment do
               u.user_id=User.find_by(name: content.cell("E",i)).try(:id)
               u.reporter_id= User.find_by(name: content.cell("H",i)).try(:id)  #content.cell("H",i).to_s[-6,6]
               u.last_reporter_id= User.find_by(name: content.cell("K",i)).try(:id)  #content.cell("H",i).to_s[-6,6]
+              u.aasm_state = "finished"
               u.save
             rescue
             	next

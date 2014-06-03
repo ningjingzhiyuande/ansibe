@@ -22,6 +22,7 @@ class Entretain < ActiveRecord::Base
 
       state :last_acceptting
       state :last_rejectting
+      state :finished
     
       event :audit do
          transitions :from => :applying, :to => :auditting, :guard => :send_apply_mail
@@ -37,6 +38,9 @@ class Entretain < ActiveRecord::Base
       end
       event :last_reject do
       	 transitions :from => :acceptting, :to => :last_rejectting, :guard => :send_finished_mail
+      end
+      event :finish  do
+        transitions :from => [:rejectting,:last_acceptting,:last_rejectting] :to => :finished
       end
 
 
