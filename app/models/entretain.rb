@@ -40,7 +40,7 @@ class Entretain < ActiveRecord::Base
       	 transitions :from => :acceptting, :to => :last_rejectting, :guard => :send_finished_mail
       end
       event :finish  do
-        transitions :from => [:rejectting,:last_acceptting,:last_rejectting] :to => :finished
+        transitions :from => [:rejectting,:last_acceptting,:last_rejectting], :to => :finished
       end
 
 
