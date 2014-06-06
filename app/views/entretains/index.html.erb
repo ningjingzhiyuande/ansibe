@@ -30,13 +30,22 @@
       <td><%= entretain.user.name %></td>
        <td class="with_form"><div class="f1 f"><%= entretain.aasm_state %></div>
         <%if entretain.is_reporter?(current_user.id)%>
-            <%entretain.aasm.events.each do |e|%>
+            <%['accept','reject'].each do |e|%>
                <div class="f1 f"> <%=form_for :entretain,:url=>auddit_entretain_url(entretain,e: e) do |f|%>
                    <%=f.submit "#{e.to_s}"%>
                    </div>
                 <%end%>
             <%end%>
         <%end%>
+         <%if entretain.is_last_reporter?(current_user.id)%>
+            <%['last_accept','last_reject'].each do |e|%>
+               <div class="f1 f"> <%=form_for :entretain,:url=>auddit_entretain_url(entretain,e: e) do |f|%>
+                   <%=f.submit "#{e.to_s}"%>
+                   </div>
+                <%end%>
+            <%end%>
+        <%end%>
+
        </td>
    
     </tr>

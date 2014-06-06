@@ -68,11 +68,12 @@ class Entretain < ActiveRecord::Base
     	reporter_id==user_id
     end
 
+
     def self.last_report_user(user)
       User.where(role: 200).where(department: [user.department, 6100]).select(:id,:name).collect{|u|[u.name,u.id]}    
     end
-    def is_reporter?(user_id)
-      reporter_id==user_id
+    def is_last_reporter?(user_id)
+      last_reporter_id==user_id
     end
 
 end
