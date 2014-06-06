@@ -37,7 +37,7 @@
                 <%end%>
             <%end%>
         <%end%>
-         <%if entretain.is_last_reporter?(current_user.id)%>
+         <%if entretain.is_last_reporter?(current_user.id) && entretain.has_approved%>
             <%['last_accept','last_reject'].each do |e|%>
                <div class="f1 f"> <%=form_for :entretain,:url=>auddit_entretain_url(entretain,e: e) do |f|%>
                    <%=f.submit "#{e.to_s}"%>

@@ -49,6 +49,10 @@ class Entretain < ActiveRecord::Base
     	self.audit! if aasm_state=="applying" && !reporter_id.blank?
     end
 
+    def has_approved
+    	aasm_state=="acceptting"
+    end
+
     def send_apply_mail
     	#binding.pry
     	EntretainMail.send_apply_mail(self).deliver
