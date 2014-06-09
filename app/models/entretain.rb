@@ -2,7 +2,7 @@ class Entretain < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :report_user,foreign_key: "reporter_id",class_name: "User"
 	belongs_to :last_report_user,foreign_key: "last_reporter_id",class_name: "User"
-	#after_save :send_apply_mail,:if => Proc.new{|r| r.aasm_state_changed? && r.aasm_state=="auditting"} 
+	after_save :send_apply_mail,:if => Proc.new{|r| r.aasm_state_changed? && r.aasm_state=="auditting"} 
 	#after_save :send_finished_mail,:if => Proc.new{|r| r.aasm_state_changed? && (["acceptting","rejectting"].include? r.aasm_state)} 
   
   include SimpleEnum
@@ -25,7 +25,7 @@ class Entretain < ActiveRecord::Base
       state :finished
     
       event :audit do
-         transitions :from => :applying, :to => :auditting, :guard => :send_apply_mail
+         transitions :from => :applying, :to => :auditting#, :guard => :send_apply_mail
       end
       event :accept do
       	 transitions :from => :auditting, :to => :acceptting, :guard => :send_superior_mail

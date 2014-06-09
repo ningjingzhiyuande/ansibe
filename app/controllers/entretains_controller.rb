@@ -61,7 +61,7 @@ class EntretainsController < ApplicationController
      sign_in user  
 
      @entretain.send(motion)
-    redirect_to entretains_url if  @entretain.save
+     redirect_to entretains_url if  @entretain.save
   end
 
   private
