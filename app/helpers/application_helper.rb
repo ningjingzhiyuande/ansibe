@@ -12,4 +12,12 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def option_for_select(array) 	
+  	arr = []
+  	array.each do |v|
+      arr<<[v,v]
+  	end 
+  	arr
+  end
+
 end

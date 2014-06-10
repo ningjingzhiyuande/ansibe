@@ -13,10 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require kindeditor
+//= require select_expand
+//= require jquery.validate.min
+//= require additional-methods.min
+
 //= require jquery.ui.all
 //= require turbolinks
 
 //= require_tree .
-$(function() {
-  $(document).foundation();
-});
