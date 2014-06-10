@@ -50,7 +50,9 @@
       <tr height="35">
         <td class="td01"><b></b>附件：</td>
         <td colspan="3"><div style="padding:20px 10px;">
+         <%unless @entretain.attache_url.blank?%>
           <img src="<%=@entretain.attache_url%>" width=100 height=100/>
+          <%end%>
           </div>
         </td>
       </tr>
