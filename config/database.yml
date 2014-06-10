@@ -24,7 +24,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: cgboa_development
+  database: cgboa_production
   pool: 5
   username: root
   password: root123
