@@ -40,8 +40,9 @@ $(function(){
       <tr height="35">
         <td class="td01">审批者：</td>
         <td>
+        <%#=f.hidden_field :reporter_id,:value=>current_user.id%>
         <%if current_user.role.to_i==100%>
-          <%=f.hidden_field :reporter_id,current_user.id%>
+          <%=f.hidden_field :reporter_id,:value=>current_user.id%>
           <%= f.select :last_reporter_id, Entretain.last_report_user(current_user) %>
         <%else%>
          <%= f.select :reporter_id, Entretain.report_user(current_user) %> -------> 
