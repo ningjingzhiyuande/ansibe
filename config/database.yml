@@ -3,10 +3,10 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: oa
+  database: cgboa_development
   pool: 5
   username: root
-  password: root
+  password: root123
   host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
@@ -24,7 +24,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: cgboa_production
+  database: cgboa_development
   pool: 5
   username: root
   password: root123
