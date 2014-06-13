@@ -14,7 +14,8 @@
 					
 					<% if current_user %>
                        登录为<a href=""><%= current_user.name %>
-					<a href="">修改密码</a>
+					<!-- <a href="">修改密码</a> -->
+					<%= link_to "修改密码", edit_user_registration_path %>
 					<%=link_to '退出',destroy_user_session_path%>
 					<%else %>
 					  <div class="top_menu"><a href="/users/sign_in">登录</a><a href="/users/sign_up">注册</a></div>
