@@ -33,8 +33,11 @@ class EntretainsController < ApplicationController
     @entretain = Entretain.new(entretain_params)
     @entretain.content = params["content"]
     @entretain.user_id = current_user.id
-    @entretain.audit if @entretain.reporter_id && entretain.reporter_id!=current_user.id
-    @entretain.accept if @entretain.reporter_id && entretain.reporter_id==current_user.id
+    @entretain.audit if @entretain.reporter_id && @entretain.reporter_id!=current_user.id
+    if @entretain.reporter_id && @entretain.reporter_id==current_user.id
+       @entretain.aasm_state="auditting"
+       @entretain.accept 
+    end
 
     
 
