@@ -58,6 +58,7 @@ class EntretainsController < ApplicationController
   end
 
   def auddit_from_mail
+  	 return redirect_to entretains_url , notice: '该宴请已经被审批过了 :)'  if ["rejectting","last_acceptting","last_rejectting","finished"].include? @entretain.aasm_state
      email =  Base64.decode64(params["token"])
      motion =  Base64.decode64(params["e"])
      user = User.find_by(email: email)
