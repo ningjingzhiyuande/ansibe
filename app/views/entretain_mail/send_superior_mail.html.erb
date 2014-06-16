@@ -1,8 +1,9 @@
 <%=@entretain.last_report_user.try(:name)%>,您好：<br/>
 
     <%=@entretain.user.try(:name)%>申请的宴请内容:<br/>
-    <h3><%@entretain.title%></h3>
-    <%=raw @entretain.content%>
+    <h3>所属项目：<%@entretain.title%></h3>
+    用餐费用：<%@entretain.fee%>
+    内容：<%=raw @entretain.content%>
 
     <h3><br/>
     已经被<%=@entretain.report_user.try(:name)%>审批通过，请您再次审核。<br/>
