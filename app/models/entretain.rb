@@ -4,7 +4,9 @@ class Entretain < ActiveRecord::Base
 	belongs_to :last_report_user,foreign_key: "last_reporter_id",class_name: "User"
 	after_save :send_apply_mail,:if => Proc.new{|r| r.aasm_state_changed? && r.aasm_state=="auditting"} 
 	#after_save :chief_report
-	#after_save :send_finished_mail,:if => Proc.new{|r| r.aasm_state_changed? && (["acceptting","rejectting"].include? r.aasm_state)} 
+	after_save :send_superior_mail,:if => Proc.new{|r| r.aasm_state_changed? && r.aasm_state=="acceptting"} 
+	
+	after_save :send_finished_mail,:if => Proc.new{|r| r.aasm_state_changed? && (["last_acceptting","rejectting","last_rejectting"].include? r.aasm_state)} 
   
   #include SimpleEnum
   #has_enum :titles ,:enums => [[:fuqing12, "1", "福清12"],[:fuqing34, "2", "福清34"],[:fuqing56, "3", "福清56"], \
@@ -30,16 +32,16 @@ class Entretain < ActiveRecord::Base
          transitions :from => :applying, :to => :auditting#, :guard => :send_apply_mail
       end
       event :accept do
-      	 transitions :from => :auditting, :to => :acceptting, :guard => :send_superior_mail
+      	 transitions :from => :auditting, :to => :acceptting#, :guard => :send_superior_mail
       end
       event :reject do
-      	 transitions :from => :auditting, :to => :rejectting, :guard => :send_finished_mail
+      	 transitions :from => :auditting, :to => :rejectting#, :guard => :send_finished_mail
       end
       event :last_accept do
-      	 transitions :from => :acceptting, :to => :last_acceptting, :guard => :send_finished_mail
+      	 transitions :from => :acceptting, :to => :last_acceptting#, :guard => :send_finished_mail
       end
       event :last_reject do
-      	 transitions :from => :acceptting, :to => :last_rejectting, :guard => :send_finished_mail
+      	 transitions :from => :acceptting, :to => :last_rejectting#, :guard => :send_finished_mail
       end
       event :finish  do
         transitions :from => [:rejectting,:last_acceptting,:last_rejectting], :to => :finished
