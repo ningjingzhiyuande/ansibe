@@ -6,7 +6,7 @@
     所属项目：<%@entretain.title%>
     用餐费用：<%@entretain.fee%>
     内容：<%=raw @entretain.content%>
-    审阅结果：<%=@entretain.aasm_state%><br/>
+    审阅结果：<%=I18n.t @entretain.aasm_state%><br/>
     
     <h3>
      <a href="<%=@url%>/entretains/<%=@entretain.id%>">查看</a> 
