@@ -15,6 +15,14 @@ zh-CN:
       new_attendance: '请假条'
       workflow_state: "状态"
       awaiting_review_by_1: "等待一级审批"
+
+  acceptting: "处长同意"
+  applying: "申请状态"
+  auditting: "审核状态"
+  rejectting: "处长拒绝"
+  last_acceptting: "主任同意"
+  last_rejectting: "主任拒绝"
+  finished: "完成"
       
 
 
